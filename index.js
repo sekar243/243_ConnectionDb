@@ -19,11 +19,12 @@ const pool = new Pool({
     port: 5432
 })
 
-app.get('/', (req, res, next)=> {
+app.get('/', (req, res, next) => {
     console.log("TEST DATA :");
     pool.query('Select * from biodata')
         .then(testData => {
-            console.log(testData.rows);
+            console.log(testData);
+            res.send(testData.rows);
         })
         .catch(err => {
             console.error(err);
